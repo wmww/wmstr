@@ -21,6 +21,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-g" />
 		</Compiler>
 		<Unit filename="main.cpp" />
 		<Unit filename="wmstr.h" />
