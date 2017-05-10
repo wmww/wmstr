@@ -73,5 +73,45 @@ int main(int argc, char ** argv)
 	TEST(endsWith("cπ✗ab♛c╢", "╢"), true);
 	TEST(endsWith("cπ✗ab♛c╢", "d"), false);
 	
+	TEST(endOf("a").u, 1);
+	
+	TEST(find("cπ✗ab♛c╢", "ab♛").u, 3);
+	
+	{
+		string a = "abc_✗_✗π✗a_✗123";
+		
+		vector<string> v;
+		
+		splitBy(v, a, "_✗");
+		
+		TEST((int)v.size(), 3);
+		
+		if (v.size() == 3)
+		{
+			TEST(v[0], "abc");
+			TEST(v[1], "π✗a");
+			TEST(v[2], "123");
+		}
+	}
+	
+	{
+		string a = "abc_✗||✗π✗a_✗123||✗nnn_✗";
+		
+		vector<string> s = {"||✗", "_✗"};
+		vector<string> v;
+		
+		splitBy(v, a, s);
+		
+		TEST((int)v.size(), 4);
+		
+		if (v.size() == 4)
+		{
+			TEST(v[0], "abc");
+			TEST(v[1], "π✗a");
+			TEST(v[2], "123");
+			TEST(v[3], "nnn");
+		}
+	}
+	
 	return 0;
 }
