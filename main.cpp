@@ -42,6 +42,36 @@ int main(int argc, char ** argv)
 	TEST(endOf("abs").b, 3);
 	TEST(endOf("_✗_").u, 3);
 	TEST(endOf("_✗_").b, 5);
+	TEST(endOf("✗abc╢").u, 5);
+	
+	{
+		string a = "π✗ab♛c╢";
+		
+		Itr i(a);
+		
+		i.onward(6);
+		i.backItUp(4);
+		
+		TEST(i.u, 1);
+		TEST(i.b, 2);
+		TEST(i.bNext, 5);
+	}
+	
+	{
+		string a = "π✗ab♛c╢";
+		
+		Itr i(a);
+		
+		i.onward(100);
+		TEST(i.u, 7);
+		i.backItUp(100);
+		TEST(i.u, -1);
+	}
+	
+	TEST(startsWith("π✗ab♛c╢", "π✗a"), true);
+	TEST(startsWith("cπ✗ab♛c╢", "π✗a"), false);
+	TEST(endsWith("cπ✗ab♛c╢", "╢"), true);
+	TEST(endsWith("cπ✗ab♛c╢", "d"), false);
 	
 	return 0;
 }
