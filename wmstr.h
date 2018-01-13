@@ -1,3 +1,6 @@
+#ifndef WMSTR_H
+#define WMSTR_H
+
 #include <string>
 using std::string;
 
@@ -286,3 +289,4 @@ inline void splitBy(vector<string>& out, const string& str, vector<string>& spli
 
 }
 
+#endif // WMSTR_H
